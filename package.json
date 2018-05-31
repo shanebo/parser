@@ -1,0 +1,16 @@
+{
+  "name": "@dylanjs/parser",
+  "version": "0.1.0",
+  "description": "Middleware for Dylan which provides parsing of posted data.",
+  "license": "MIT",
+  "keywords": [
+    "middleware",
+    "dylan"
+  ],
+  "repository": "dylanjs/parser",
+  "author": "Shane Thacker <shane@steadymade.com>",
+  "main": "./index",
+  "dependencies": {
+    "qs": "6.5.2"
+  }
+}
