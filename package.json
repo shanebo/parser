@@ -1,5 +1,5 @@
 {
-  "name": "@dylanjs/parser",
+  "name": "@dylan/parser",
   "version": "0.1.0",
   "description": "Middleware for Dylan which provides parsing of posted data.",
   "license": "MIT",

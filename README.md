@@ -4,11 +4,11 @@ Middleware for Dylan which provides parsing of posted data.
 
 ## Install
 
-`npm install @dylanjs/parser`
+`npm install @dylan/parser`
 
 ## Usage
 
 ``` js
-const parser = require('@dylanjs/parser');
+const parser = require('@dylan/parser');
 app.use(parser());
 ```
