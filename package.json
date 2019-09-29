@@ -11,6 +11,7 @@
   "author": "Shane Thacker <shane@steadymade.com>",
   "main": "./index",
   "dependencies": {
-    "qs": "6.9.0"
+    "qs": "6.9.0",
+    "dot-prop": "5.1.0"
   }
 }
