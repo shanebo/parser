@@ -10,16 +10,8 @@
   "repository": "dylanjs/parser",
   "author": "Shane Thacker <shane@steadymade.com>",
   "main": "./index",
-  "scripts": {
-    "test": "mocha --watch"
-  },
   "dependencies": {
     "qs": "6.9.0",
-    "dot-prop": "5.1.0"
-  },
-  "devDependencies": {
-    "mocha": "4.1.0",
-    "chai": "4.1.2",
-    "chai-string": "1.5.0"
+    "coerce": "github:shanebo/coerce#0.1.0"
   }
 }

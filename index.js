@@ -1,5 +1,5 @@
 const qs = require('qs');
-const { coerce } = require('./coerce');
+const { coerce } = require('coerce');
 
 
 module.exports = (options) => {
@@ -11,26 +11,7 @@ module.exports = (options) => {
 
   const opts = { ...defaults, ...options };
 
-  // Object.defineProperty(httprequest, 'query', {
-  //   get() {
-  //     super();
-  //     this._query = coerceValues(this._query);
-  //     coerceParams(this.search, this._query);
-  //     return this._query;
-  //   }
-  //   set(val) {
-  //     super(val);
-  //     return this._query;
-  //   }
-  // })
-
-
   return (req, res, next) => {
-    // implement object define instead so it only runs when app calls it
-    if (req.querystring) {
-      req.query = coerce(req.query, opts, req.querystring);
-    }
-
     if (/^(POST|PUT|PATCH|DELETE)$/i.test(req.method)) {
       let body = '';
 
