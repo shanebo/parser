@@ -25,7 +25,7 @@ module.exports = (options) => {
             ? JSON.parse(body)
             : qs.parse(body, opts)
 
-          req.body = coerce(req.body, opts, decodeURIComponent(body));
+          req.body = coerce(req.body, opts, body);
         }
 
         next();
