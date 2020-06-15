@@ -21,11 +21,10 @@ module.exports = (options) => {
 
       req.on('end', () => {
         if (body) {
-          req.body = req.is('json')
-            ? JSON.parse(body)
-            : qs.parse(body, opts)
-
-          req.body = coerce(req.body, opts, body);
+          const isJSON = req.is('json');
+          const data = isJSON ? JSON.parse(body) : qs.parse(body, opts);
+          const params = isJSON ? qs.stringify(data, opts) : body;
+          req.body = coerce(data, opts, params);
         }
 
         next();
