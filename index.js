@@ -1,17 +1,32 @@
 const qs = require('qs');
+const { coerce } = require('@dylan/coerce');
 
-module.exports = () => {
+
+module.exports = (options) => {
+  const defaults = {
+    coerce: true,
+    allowDots: true,
+    arrayFormat: 'repeat'
+  };
+
+  const opts = { ...defaults, ...options };
+
   return (req, res, next) => {
     if (/^(POST|PUT|PATCH|DELETE)$/i.test(req.method)) {
       let body = '';
+
       req.on('data', (data) => {
         body += data;
       });
 
       req.on('end', () => {
-        req.body = req.is('json')
-          ? JSON.parse(body)
-          : qs.parse(body);
+        if (body) {
+          const isJSON = req.is('json');
+          const data = isJSON ? JSON.parse(body) : qs.parse(body, opts);
+          const params = isJSON ? qs.stringify(data, opts) : body;
+          req.body = coerce(data, opts, params);
+        }
+
         next();
       });
     } else {

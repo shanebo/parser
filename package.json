@@ -1,6 +1,6 @@
 {
   "name": "@dylan/parser",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Middleware for Dylan which provides parsing of posted data.",
   "license": "MIT",
   "keywords": [
@@ -11,6 +11,7 @@
   "author": "Shane Thacker <shane@steadymade.com>",
   "main": "./index",
   "dependencies": {
-    "qs": "6.9.0"
+    "qs": "6.9.0",
+    "@dylan/coerce": "~0.2.0"
   }
 }
