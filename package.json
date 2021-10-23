@@ -12,6 +12,6 @@
   "main": "./index",
   "dependencies": {
     "qs": "6.9.0",
-    "coerce": "github:shanebo/coerce#0.1.0"
+    "@dylan/coerce": "~0.2.0"
   }
 }

@@ -1,5 +1,5 @@
 const qs = require('qs');
-const { coerce } = require('coerce');
+const { coerce } = require('@dylan/coerce');
 
 
 module.exports = (options) => {
