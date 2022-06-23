@@ -1,6 +1,6 @@
 {
   "name": "@dylan/parser",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Middleware for Dylan which provides parsing of posted data.",
   "license": "MIT",
   "keywords": [
@@ -12,6 +12,6 @@
   "main": "./index",
   "dependencies": {
     "qs": "6.9.0",
-    "@dylan/coerce": "~0.2.0"
+    "@dylan/coerce": "~0.2.1"
   }
 }
