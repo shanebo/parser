@@ -12,6 +12,6 @@
   "main": "./index",
   "dependencies": {
     "qs": "6.9.0",
-    "@dylan/coerce": "^0.2.2"
+    "@dylan/coerce": "~0.2.2"
   }
 }
