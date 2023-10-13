@@ -1,34 +1,45 @@
 const qs = require('qs');
 const { coerce } = require('@dylan/coerce');
+const WRITE_METHODS = ['POST', 'PUT', 'PATCH', 'DELETE'];
 
 
 module.exports = (options) => {
-  const defaults = {
+  const opts = {
     coerce: true,
     allowDots: true,
-    arrayFormat: 'repeat'
+    arrayFormat: 'repeat',
+    ...options
   };
 
-  const opts = { ...defaults, ...options };
-
   return (req, res, next) => {
-    if (/^(POST|PUT|PATCH|DELETE)$/i.test(req.method)) {
-      let body = '';
+    if (WRITE_METHODS.includes(req.method)) {
+      const isSupportedContentType = req.is(['json', 'urlencoded']);
 
-      req.on('data', (data) => {
-        body += data;
-      });
+      if (isSupportedContentType) {
+        let body = '';
 
-      req.on('end', () => {
-        if (body) {
-          const isJSON = req.is('json');
-          const data = isJSON ? JSON.parse(body) : qs.parse(body, opts);
-          const params = isJSON ? qs.stringify(data, opts) : body;
-          req.body = coerce(data, opts, params);
-        }
+        req.on('data', (data) => {
+          body += data;
+        });
 
-        next();
-      });
+        req.on('end', () => {
+          if (body) {
+            try {
+              const isJson = isSupportedContentType === 'json';
+              const data = isJson ? JSON.parse(body) : qs.parse(body, opts);
+              const params = isJson ? qs.stringify(data, opts) : body;
+              req.body = coerce(data, opts, params);
+            } catch (err) {
+              err.message = 'Bad Request';
+              return res.error(err);
+            }
+          }
+
+          next();
+        });
+      } else {
+        res.error(new Error('Unsupported Media Type'));
+      }
     } else {
       next();
     }
