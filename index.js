@@ -35,7 +35,14 @@ module.exports = (options) => {
             }
           }
 
-          next();
+          // needed because higher level try/catch
+          // that wraps the entire request handler
+          // won't catch errors in async functions
+          try {
+            next();
+          } catch (err) {
+            res.error(err);
+          }
         });
       } else {
         res.error(new Error('Unsupported Media Type'));
